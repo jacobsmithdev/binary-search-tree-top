@@ -110,6 +110,8 @@ export default class Tree {
     }
 
     levelOrderForEach(callback) {
+        this.#checkCallback(callback);
+
         const queue = [];
 
         // Check if tree is empty
@@ -127,20 +129,30 @@ export default class Tree {
     }
 
     inOrderForEach(callback, node = this.root) {
+        this.#checkCallback(callback);
+
         if (node.left) this.inOrderForEach(callback, node.left);
         callback(node);
         if (node.right) this.inOrderForEach(callback, node.right);
     }
 
     preOrderForEach(callback, node = this.root) {
+        this.#checkCallback(callback);
+
         callback(node);
         if (node.left) this.preOrderForEach(callback, node.left);
         if (node.right) this.preOrderForEach(callback, node.right);
     }
 
     postOrderForEach(callback, node = this.root) {
+        this.#checkCallback(callback);
+
         if (node.left) this.postOrderForEach(callback, node.left);
         if (node.right) this.postOrderForEach(callback, node.right);
         callback(node);
+    }
+
+    #checkCallback(callback) {
+        if (!callback) throw new Error('Function call missing callback.');
     }
 }
