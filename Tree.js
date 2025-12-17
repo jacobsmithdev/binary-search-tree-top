@@ -131,4 +131,10 @@ export default class Tree {
         callback(node);
         if (node.right) this.inOrderForEach(callback, node.right);
     }
+
+    preOrderForEach(callback, node = this.root) {
+        callback(node);
+        if (node.left) this.preOrderForEach(callback, node.left);
+        if (node.right) this.preOrderForEach(callback, node.right);
+    }
 }
