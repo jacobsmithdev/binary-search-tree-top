@@ -50,7 +50,7 @@ export default class Tree {
     }
 
     deleteItem(value) {
-        return this.#deleteItemRecursive(this.root, value);
+        this.root = this.#deleteItemRecursive(this.root, value);
     }
 
     // Taken and modified from:
