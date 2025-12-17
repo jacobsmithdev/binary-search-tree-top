@@ -108,4 +108,21 @@ export default class Tree {
         // If value cannot be found, return null
         return null;
     }
+
+    levelOrderForEach(callback) {
+        const queue = [];
+
+        // Check if tree is empty
+        if (this.root === null) return;
+
+        queue.push(this.root);
+
+        while (queue.length > 0) {
+            const node = queue.shift();
+            callback(node);
+
+            if (node.left) queue.push(node.left);
+            if (node.right) queue.push(node.right);
+        }
+    }
 }
