@@ -125,4 +125,10 @@ export default class Tree {
             if (node.right) queue.push(node.right);
         }
     }
+
+    inOrderForEach(callback, node = this.root) {
+        if (node.left) this.inOrderForEach(callback, node.left);
+        callback(node);
+        if (node.right) this.inOrderForEach(callback, node.right);
+    }
 }
