@@ -42,7 +42,7 @@ export default class Tree {
 
         if (root[valueDirection]) {
             // If subtree exists, recurse into it
-            this.#insertRecursive(value, root[valueDirection]);
+            this.#insertRecursive(root[valueDirection], value);
         } else {
             // If no subtree exists, add new node to that point
             root[valueDirection] = new Node(value);
