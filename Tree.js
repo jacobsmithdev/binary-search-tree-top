@@ -167,7 +167,7 @@ export default class Tree {
         let node = this.root;
 
         while (node !== null && node.data !== value) {
-            const valueDirection = value < root.data ? 'left' : 'right';
+            const valueDirection = value < node.data ? 'left' : 'right';
             node = node[valueDirection];
             depth++;
         }
