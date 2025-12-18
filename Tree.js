@@ -160,4 +160,24 @@ export default class Tree {
     #checkCallback(callback) {
         if (!callback) throw new Error('Function call missing callback.');
     }
+
+    depth(value, root = this.root) {
+        let depth = 0;
+
+        let node = this.root;
+
+        while (node !== null && node.data !== value) {
+            const valueDirection = value < root.data ? 'left' : 'right';
+            node = node[valueDirection];
+            depth++;
+        }
+
+        if (node) {
+            // If we found a node matching value, return its depth
+            return depth;
+        } else {
+            // If no node found matching value, return null
+            return null;
+        }
+    }
 }
