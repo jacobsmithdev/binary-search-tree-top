@@ -30,6 +30,11 @@ export default class Tree {
     }
 
     insert(value) {
+        if (this.root === null) {
+            this.root = new Node(value);
+            return;
+        }
+
         return this.#insertRecursive(this.root, value);
     }
 
