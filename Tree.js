@@ -225,4 +225,12 @@ export default class Tree {
         const difference = Math.abs(leftHeight - rightHeight);
         return difference <= 1;
     }
+
+    rebalance() {
+        const newArr = [];
+
+        this.preOrderForEach((node) => newArr.push(node.data));
+
+        this.root = this.buildTree(newArr);
+    }
 }
