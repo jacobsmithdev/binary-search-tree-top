@@ -204,4 +204,25 @@ export default class Tree {
         }
         return height;
     }
+
+    isBalanced(root = this.root) {
+        // Empty tree is balanced by default
+        if (!root) return true;
+
+        // If any two subtrees are unbalanced, return false
+        const isBalanced = this.#checkBalance(root.left, root.right);
+        if (!isBalanced) return false;
+
+        // Check every subtree in tree
+        return this.isBalanced(root.left) && this.isBalanced(root.right);
+    }
+
+    #checkBalance(leftTree, rightTree) {
+        // If left/right are null, treat their height as zero
+        const leftHeight = leftTree ? this.height(leftTree.data) : 0;
+        const rightHeight = rightTree ? this.height(rightTree.data) : 0;
+
+        const difference = Math.abs(leftHeight - rightHeight);
+        return difference <= 1;
+    }
 }
