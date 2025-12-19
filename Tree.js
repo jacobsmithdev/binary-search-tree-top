@@ -180,4 +180,28 @@ export default class Tree {
             return null;
         }
     }
+
+    height(value) {
+        let node = this.find(value);
+        if (!node) return null;
+
+        const queue = [node];
+
+        let height = 0;
+        let currentDepth = this.depth(node.data);
+        while (queue.length > 0) {
+            node = queue.shift();
+            const nodeDepth = this.depth(node.data);
+
+            // Check if our depth in tree has changed
+            if (nodeDepth > currentDepth) {
+                currentDepth = nodeDepth;
+                height++;
+            }
+
+            if (node.left) queue.push(node.left);
+            if (node.right) queue.push(node.right);
+        }
+        return height;
+    }
 }
